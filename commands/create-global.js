@@ -82,9 +82,21 @@ module.exports = {
 
 	async autocomplete(interaction) {
 		const focusedValue = interaction.options.getFocused().toLowerCase();
-		const filtered = timezones.filter(choice => choice.name.toLowerCase().includes(focusedValue));
-		await interaction.respond(
-			filtered.map(choice => ({ name: choice.name, value: choice.value })).slice(0, 25),
+		const filteredTimezones = timezones.filter(choice =>
+			choice.name.toLowerCase().includes(focusedValue)
 		);
+
+		const filteredCities = timezones.flatMap(choice =>
+			choice.cities
+				.filter(city => city.toLowerCase().includes(focusedValue))
+				.map(city => ({ name: `${city} - ${choice.name}`, value: choice.value }))
+		);
+
+		const filtered = [
+			...filteredTimezones.map(choice => ({ name: choice.name, value: choice.value })),
+			...filteredCities
+		];
+
+		await interaction.respond(filtered.slice(0, 25));
 	},
 };
