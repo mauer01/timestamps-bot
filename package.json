@@ -1,7 +1,7 @@
 {
-  "name": "np-gatekeeper",
+  "name": "timestamps",
   "version": "1.0.0",
-  "description": "Discord Bot that guards the niklaspeterson.eth Discord Server and only let in people who complete the captcha.",
+  "description": "Timestamps makes time management in Discord simple and efficient. Use it to generate and share timestamps that everyone in your server can easily understand, regardless of their time zone.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,7 +24,7 @@
     "eslint": "^8.57.0"
   },
   "dependencies": {
-    "alchemy-sdk": "^3.2.0",
+    "@supabase/supabase-js": "^2.47.10",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
     "node-fetch": "^2.6.1"
