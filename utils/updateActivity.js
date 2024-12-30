@@ -42,7 +42,7 @@ async function updateBotActivity(client) {
 			.upsert({
 				id: 1,
 				server_count: serverCount,
-				updated_at: new Date().toISOString();
+				updated_at: new Date().toISOString()
 			});
 
 		if (error) {
