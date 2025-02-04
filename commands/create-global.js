@@ -57,11 +57,8 @@ module.exports = {
 		if (isNaN(hours) || isNaN(minutes) || hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
 			return interaction.reply({ content: 'Invalid time format. Please use HH:MM (24-hour format).', ephemeral: true });
 		}
-		let localoffset = new Date().getTimezoneOffset() * -1;
-		let positive = localoffset > 0 ? '+' : '-';
-		Math.floor(localoffset/60) < 10 || Math.floor(localoffset/60) > -10 ? localoffset = positive + '0' + Math.floor(localoffset/60) + ':' + (localoffset % 60) : localoffset = positive + Math.floor(localoffset/60) + ':' + (localoffset % 60);
-
-		const timezone = interaction.options.getString('timezone') || localoffset;
+		
+		const timezone = interaction.options.getString('timezone') || localOffset(); 
 
 		// Create Date object and get Unix timestamp
 		const date = new Date(Date.UTC(year, month - 1, day, hours, minutes));

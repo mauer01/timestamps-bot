@@ -41,3 +41,10 @@ module.exports = [
 	{ name: 'Australian Central Daylight Time (ACDT)', value: '+10:30', cities: ['Adelaide'] },
 	{ name: 'Australian Western Standard Time (AWST)', value: '+08:00', cities: ['Perth'] },
 ];
+
+localOffset = () => { 
+	let localoffset = new Date().getTimezoneOffset() * -1;
+	const positive = localoffset > 0 ? '+' : '-';
+	Math.floor(localoffset/60) < 10 || Math.floor(localoffset/60) > -10 ? localoffset = positive + '0' + Math.floor(localoffset/60) + ':' + (localoffset % 60) : localoffset = positive + Math.floor(localoffset/60) + ':' + (localoffset % 60);
+	return localoffset;
+}
