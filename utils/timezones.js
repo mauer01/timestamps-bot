@@ -42,9 +42,13 @@ module.exports = [
 	{ name: 'Australian Western Standard Time (AWST)', value: '+08:00', cities: ['Perth'] },
 ];
 
-localOffset = () => { 
-	let localoffset = new Date().getTimezoneOffset() * -1;
-	const positive = localoffset > 0 ? '+' : '-';
-	Math.floor(localoffset/60) < 10 || Math.floor(localoffset/60) > -10 ? localoffset = positive + '0' + Math.floor(localoffset/60) + ':' + (localoffset % 60) : localoffset = positive + Math.floor(localoffset/60) + ':' + (localoffset % 60);
-	return localoffset;
+function localTimezone() {
+	const offset = -new Date().getTimezoneOffset();
+	const sign = offset >= 0 ? '+' : '-';
+	const absOffset = Math.abs(offset);
+	const hours = String(Math.floor(absOffset / 60)).padStart(2, '0');
+	const minutes = String(absOffset % 60).padStart(2, '0');
+	return `${sign}${hours}:${minutes}`;
 }
+
+module.exports.localTimezone = localTimezone;

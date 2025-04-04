@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const timezones = require('../utils/timezones');
+const { localTimezone } = require('../utils/timezones');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -58,8 +59,7 @@ module.exports = {
 			return interaction.reply({ content: 'Invalid time format. Please use HH:MM (24-hour format).', ephemeral: true });
 		}
 
-
-		const timezone = interaction.options.getString('timezone') || localOffset();
+		const timezone = interaction.options.getString('timezone') || localTimezone();
 
 		// Create Date object and get Unix timestamp
 		const date = new Date(Date.UTC(year, month - 1, day, hours, minutes));
